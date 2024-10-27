@@ -1,0 +1,74 @@
+--Creación de la secuencia (Para todos los trigger)
+
+CREATE SEQUENCE seq_id_auditoria
+START WITH 1  -- Comienza desde 1 o el valor deseado
+INCREMENT BY 1 
+
+--Trigger para auditoría (Insertar)
+CREATE OR REPLACE TRIGGER trg_insert_cliente
+AFTER INSERT ON Clientes
+FOR EACH ROW
+BEGIN
+    INSERT INTO clientes_auditoria (
+        id_clientes,
+        nombre_clientes,
+        apellidos_clientes,
+        id_auditoria,
+        usuario_modificacion_,
+        fecha_modificacion
+    ) VALUES (
+        :NEW.id_clientes,
+        :NEW.nombre_clientes,
+        :NEW.apellidos_clientes,
+        seq_id_auditoria.NEXTVAL,  -- Genera un valor único para id_auditoria
+        USER,
+        SYSDATE
+    );
+END;
+
+
+--Trigger para auditoría (Actualizar)
+CREATE OR REPLACE TRIGGER trg_update_cliente
+AFTER UPDATE ON Clientes
+FOR EACH ROW
+BEGIN
+    INSERT INTO clientes_auditoria (
+        id_clientes,
+        nombre_clientes,
+        apellidos_clientes,
+        id_auditoria,
+        usuario_modificacion_,
+        fecha_modificacion
+    ) VALUES (
+        :NEW.id_clientes,
+        :NEW.nombre_clientes,
+        :NEW.apellidos_clientes,
+        seq_id_auditoria.NEXTVAL, 
+        USER,
+        SYSDATE
+    );
+END;
+
+
+--Trigger para auditoría (Eliminar)
+CREATE OR REPLACE TRIGGER trg_delete_cliente
+AFTER DELETE ON Clientes
+FOR EACH ROW
+BEGIN
+    INSERT INTO clientes_auditoria (
+        id_clientes,
+        nombre_clientes,
+        apellidos_clientes,
+        id_auditoria,
+        usuario_modificacion_,
+        fecha_modificacion
+    ) VALUES (
+        :OLD.id_clientes,
+        :OLD.nombre_clientes,
+        :OLD.apellidos_clientes,
+       seq_id_auditoria.NEXTVAL,  
+        USER,
+        SYSDATE
+    );
+END;
+
