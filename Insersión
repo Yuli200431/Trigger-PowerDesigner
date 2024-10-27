@@ -1,0 +1,51 @@
+--Insersión de datos
+insert into CLIENTES (ID_CLIENTES, NOMBRE_CLIENTES, APELLIDOS_CLIENTES) values (3, 'Maria', 'Diaz');
+
+insert into CLIENTES (ID_CLIENTES, NOMBRE_CLIENTES, APELLIDOS_CLIENTES) values (4, 'Sol', 'Doris');
+
+insert into CLIENTES (ID_CLIENTES, NOMBRE_CLIENTES, APELLIDOS_CLIENTES) values (0, 'Lucia', 'Vera');
+
+insert into CLIENTES (ID_CLIENTES, NOMBRE_CLIENTES, APELLIDOS_CLIENTES) values (2, 'Cristobal', 'Velez');
+
+insert into CLIENTES (ID_CLIENTES, NOMBRE_CLIENTES, APELLIDOS_CLIENTES) values (1, 'José', 'Andrade');
+
+
+insert into VEHICULO (ID_VEHICULO, PLACA, MODELO1) values (17, '3VYIWXU', 'KIA');
+
+insert into VEHICULO (ID_VEHICULO, PLACA, MODELO1) values (0, '375PPBA', 'Toyota');
+
+insert into VEHICULO (ID_VEHICULO, PLACA, MODELO1) values (2, 'BDJ9BLD', 'Suzuki');
+
+insert into VEHICULO (ID_VEHICULO, PLACA, MODELO1) values (8, 'WM7LCJX', 'Chevrolet');
+
+insert into VEHICULO (ID_VEHICULO, PLACA, MODELO1) values (16, 'Q2GO2A8', 'Honda');
+
+
+insert into ALQUILER (ID_ALQUILER, ID_CLIENTES, ID_VEHICULO) values (13, 0, 17);
+
+insert into ALQUILER (ID_ALQUILER, ID_CLIENTES, ID_VEHICULO) values (7, 1, 0);
+
+insert into ALQUILER (ID_ALQUILER, ID_CLIENTES, ID_VEHICULO) values (19, 2, 2);
+
+insert into ALQUILER (ID_ALQUILER, ID_CLIENTES, ID_VEHICULO) values (18, 3, 8);
+
+insert into ALQUILER (ID_ALQUILER, ID_CLIENTES, ID_VEHICULO) values (1, 4, 16);
+
+
+--Modificación  de tabla
+--INSERTAR
+insert into CLIENTES (ID_CLIENTES, NOMBRE_CLIENTES, APELLIDOS_CLIENTES) values (5, 'Carlos', 'Alvarez');
+insert into CLIENTES (ID_CLIENTES, NOMBRE_CLIENTES, APELLIDOS_CLIENTES) values (6, 'Marisol', 'Choez');
+
+--Actualizar
+UPDATE Clientes
+SET nombre_clientes = 'Cristo',
+    apellidos_clientes = 'Véliz'
+WHERE id_clientes = 2;
+
+--Eliminar
+DELETE FROM Alquiler
+WHERE ID_CLIENTES=4; --Eliminar todos los registros (Tabla Alquiler)
+
+Delete From Clientes
+WHERE ID_CLIENTES=4; 
